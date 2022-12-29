@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl-PL">
+<head>
+<title>Zadanie 1</title>
+</head>
+<body>
+<script>
+    //tablica wyrazów
+    var words = ["banan", "lotnisko", "marchewka", "myszka", "kot", "pies", "kakao", "czekolada", "programowanie", "informatyka", "grafika", "rzeka", "okno", "obiad", "kolacja", "krowa", "mleko", "gruszka", "buty", "drzewo"];
+    
+    var points = 0;
+
+    //losowanie słowa z tablicy
+    var word = words[Math.floor(Math.random() * words.length)];
+
+    //przygotowanie zmiennej do liczby liter
+    var answerArray = [];
+    for (var i = 0; i < word.length; i++)
+    {
+        answerArray[i] = "_";
+    }
+
+    //przechowywanie ilości liter do odgadnięcia
+    var remainingLetters = word.length;
+
+    //pozostałe litery do odgadnięcia
+    while (remainingLetters > 0)
+    {
+        //postęp
+        alert(answerArray.join(" "));
+
+        //pobranie litery od gracza
+        var guess = prompt("Zgadnij literę lub wyjdź z gry.");
+
+        //puste
+        if (guess == null)
+        {   
+            break;
+        }
+        
+        else if (guess.length!== 1)
+        {
+            alert("Podaj jedną literę.");
+        }
+
+        else if (!word.includes(guess))
+        {
+            if(points <= 0)
+            {
+                points = 0;
+                alert("Źle! Tracisz 1 punkt! Twoje punkty: " + points);
+                
+            }
+            else
+            {
+                points--;
+                alert("Źle! Tracisz 1 punkt! Twoje punkty: " + points);
+                
+            }
+                    
+        }
+
+
+        else
+        {
+            for (var j = 0; j < word.length; j++)
+            {
+                
+                //jeśli litera odgadnięta
+                if (word[j] == guess)
+                {
+                    points++;
+                    alert("Brawo, zdobywasz 1 punkt! Twoje punkty: " + points);
+                    answerArray[j] = guess;
+                    remainingLetters--;
+                }
+                                
+            }
+        }
+    }
+
+    alert(answerArray.join(" "));
+    alert("Brawo! Odgadłeś dzisiejsze słowo: " + word);
+</script>
+
+
+
+</body>
+</html>
